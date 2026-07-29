@@ -1,0 +1,13 @@
+{
+  "appName": "summerprice",
+  "permissions": [
+    {
+      "name": "clipboard",
+      "access": "write"
+    },
+    {
+      "name": "geolocation",
+      "access": "access"
+    }
+  ]
+}

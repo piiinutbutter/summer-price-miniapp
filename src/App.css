@@ -1,0 +1,962 @@
+#root {
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+@media (min-width: 481px) {
+  #root {
+    background-color: #ffffff !important;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+}
+
+.page {
+  padding-bottom: 40px;
+  background: #fff;
+  min-height: 100vh;
+}
+
+/* 카드가 떠 보이도록 목록 영역만 회색 배경 (시안 반영) */
+.list-area {
+  background: #f7f8fa;
+  padding-bottom: 20px;
+  min-height: 40vh;
+}
+
+.search-area {
+  padding: 8px 20px 4px;
+}
+
+/* ── 내 주변 찾기 ───────────────────────── */
+
+.near-area {
+  padding: 10px 20px 0;
+}
+
+.near-btn {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #cfe3ff;
+  border-radius: 14px;
+  background: #f0f6ff;
+  font-size: 15px;
+  font-weight: 700;
+  color: #3182f6;
+  cursor: pointer;
+}
+
+.near-btn--on {
+  background: #3182f6;
+  border-color: #3182f6;
+  color: #fff;
+}
+
+.near-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.near-msg {
+  margin: 10px 2px 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #8b95a1;
+}
+
+.near-list {
+  margin-top: 14px;
+  padding-top: 4px;
+  background: #f7f8fa;
+}
+
+.near-title {
+  margin: 0 20px 4px;
+  padding-top: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #191f28;
+}
+
+.chip-row {
+  display: flex;
+  gap: 8px;
+  padding: 12px 20px 4px;
+  overflow-x: auto;
+}
+
+.chip {
+  flex: 0 0 auto;
+  border: 0;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #4e5968;
+  background: #f2f4f6;
+  cursor: pointer;
+}
+
+.chip--on {
+  color: #fff;
+  background: #3182f6;
+}
+
+.hint {
+  margin: 12px 20px 4px;
+  font-size: 13px;
+  color: #8b95a1;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── 카드형 목록 (시안 반영) ───────────────── */
+
+.list {
+  padding: 4px 16px 0;
+}
+
+.card-row {
+  display: flex;
+  align-items: stretch;
+  gap: 14px;
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 0;
+  border: 0;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 1px 8px rgb(0 0 0 / 6%);
+  overflow: hidden;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+}
+
+.card-row:active {
+  background: #f9fafb;
+}
+
+.card-thumb {
+  width: 96px;
+  flex: 0 0 96px;
+  align-self: stretch;
+  object-fit: cover;
+  display: block;
+  background: #e8f3ff;
+}
+
+/* 사진이 없는 곳은 빈 회색 대신 옅은 바다색 + 파라솔 기호를 둔다 */
+.card-thumb--empty {
+  background: linear-gradient(160deg, #e8f3ff, #f2f4f6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-thumb--empty::after {
+  content: "⛱";
+  font-size: 26px;
+  opacity: 0.35;
+}
+
+.card-main {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 14px 14px 14px 0;
+  min-width: 0;
+  flex: 1;
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.card-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #191f28;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-region {
+  font-size: 13px;
+  color: #8b95a1;
+}
+
+/* 가격은 이 앱의 핵심 정보라 파랗게 강조한다 */
+.card-price {
+  margin-top: 2px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #3182f6;
+  line-height: 1.4;
+}
+
+.card-price--none {
+  color: #b0b8c1;
+  font-weight: 500;
+}
+
+/* 상세 화면 대안 목록에서 쓰는 작은 썸네일 */
+.thumb {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  object-fit: cover;
+  display: block;
+  background: #f2f4f6;
+}
+
+.thumb--empty {
+  background: #f2f4f6;
+}
+
+/* 공시가 그룹과 정보만 그룹 사이 구분 */
+.group-divider {
+  list-style: none;
+  margin: 20px 20px 4px;
+  padding-top: 16px;
+  border-top: 1px solid #e5e8eb;
+  font-size: 13px;
+  font-weight: 600;
+  color: #8b95a1;
+}
+
+/* 가격 없는 곳에서 보여줄 대안 목록 */
+.alts {
+  margin-top: 8px;
+}
+
+.alts-title {
+  margin: 0 20px 4px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #191f28;
+}
+
+/* 상세 상단 대표 사진 */
+.hero {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #f2f4f6;
+  overflow: hidden;
+}
+
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-credit {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgb(0 0 0 / 45%);
+  color: #fff;
+  font-size: 11px;
+}
+
+/* 합계 고정 바 — CTA 버튼 바로 위 */
+.sticky-total {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 84px;
+  width: min(480px, 100%);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: rgb(255 255 255 / 96%);
+  border-top: 1px solid #f2f4f6;
+  font-size: 15px;
+  color: #4e5968;
+  backdrop-filter: blur(6px);
+}
+
+.sticky-total strong {
+  font-size: 20px;
+  font-weight: 800;
+  color: #3182f6;
+}
+
+.sticky-total--free strong {
+  color: #00a05a;
+}
+
+.empty,
+.footer-note {
+  margin: 24px 20px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #8b95a1;
+}
+
+.footer-note {
+  font-size: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #f2f4f6;
+}
+
+/* ── 상세 화면 ───────────────────────────── */
+
+/* 하단 고정 CTA에 마지막 섹션이 가리지 않도록 여백을 넉넉히 둔다 */
+.page--detail {
+  padding-bottom: 140px;
+}
+
+.detail-nav {
+  padding: 12px 16px 0;
+}
+
+.back {
+  border: 0;
+  background: none;
+  font-size: 15px;
+  font-weight: 600;
+  color: #4e5968;
+  padding: 4px 0;
+  cursor: pointer;
+}
+
+.people-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 8px 20px 16px;
+  padding: 16px;
+  border-radius: 14px;
+  background: #f9fafb;
+}
+
+.people-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #191f28;
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.stepper button {
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  color: #3182f6;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 10%);
+}
+
+.stepper--small button {
+  width: 28px;
+  height: 28px;
+  font-size: 17px;
+  background: #f2f4f6;
+  box-shadow: none;
+}
+
+.stepper-value {
+  min-width: 36px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  color: #191f28;
+}
+
+.items-hint {
+  margin: 0 20px 4px;
+  font-size: 13px;
+  color: #8b95a1;
+}
+
+.items {
+  list-style: none;
+  margin: 0;
+  padding: 0 20px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid #f2f4f6;
+}
+
+.item-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* 아직 담지 않은 선택 품목 */
+.item--off .item-label,
+.item--off .item-price {
+  color: #b0b8c1;
+}
+
+.item-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #191f28;
+}
+
+.item-price {
+  font-size: 13px;
+  color: #8b95a1;
+}
+
+.total-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 16px;
+  background: #f0f6ff;
+}
+
+.total-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #4e5968;
+}
+
+.total-value {
+  font-size: 24px;
+  font-weight: 800;
+  color: #3182f6;
+}
+
+.total-card--free {
+  background: #eafaf1;
+}
+
+.total-card--free .total-value {
+  color: #00a05a;
+}
+
+.source {
+  margin: 0 20px 8px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: #f9fafb;
+}
+
+.source-text {
+  margin: 8px 0 0;
+  font-size: 13px;
+  color: #6b7684;
+}
+
+.source-link {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #3182f6;
+}
+
+.note {
+  margin: 8px 20px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #8b95a1;
+}
+
+.card,
+.after-card {
+  margin: 16px 20px;
+  padding: 20px;
+  border-radius: 16px;
+  background: #f9fafb;
+}
+
+.card-title {
+  margin: 0 0 6px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #191f28;
+}
+
+.card-body {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #6b7684;
+}
+
+/* ── 상세: 표준가격 표 ──────────────────── */
+
+.rate-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 20px 4px;
+}
+
+.rate-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #191f28;
+}
+
+.rates {
+  list-style: none;
+  margin: 0;
+  padding: 0 20px;
+}
+
+.rate {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 15px 0;
+  border-bottom: 1px solid #f2f4f6;
+}
+
+.rate-label {
+  font-size: 15px;
+  color: #4e5968;
+}
+
+.rate-price {
+  font-size: 16px;
+  font-weight: 700;
+  color: #3182f6;
+  white-space: nowrap;
+}
+
+/* ── 예산 계산기 화면 ───────────────────── */
+
+.page--budget {
+  padding-bottom: 40px;
+}
+
+.budget-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px 6px;
+}
+
+.budget-nav-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #191f28;
+}
+
+.budget-nav-space {
+  width: 52px;
+}
+
+.budget-place {
+  padding: 6px 20px 0;
+}
+
+.budget-section {
+  padding: 20px 20px 0;
+}
+
+.budget-label {
+  margin: 0 0 10px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #191f28;
+}
+
+.people-row--plain {
+  margin: 0;
+  padding: 12px 16px;
+  justify-content: flex-start;
+}
+
+.pick-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* 품목명이 길어 한 줄에 다 안 들어가므로 두 줄로 나눈다.
+   위: 체크박스 + 이름(전체 폭) / 아래: 수량 + 금액 */
+.pick {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 8px;
+  padding: 14px;
+  border: 1px solid #e5e8eb;
+  border-radius: 14px;
+  background: #fff;
+}
+
+.pick--on {
+  border-color: #cfe3ff;
+  background: #f7fbff;
+}
+
+.pick-check {
+  display: flex;
+  align-items: flex-start; /* 이름이 두 줄이 돼도 체크박스는 위에 고정 */
+  gap: 10px;
+  width: 100%;
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.box {
+  flex: 0 0 22px;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #d1d6db;
+  border-radius: 7px;
+  background: #fff;
+  color: #fff;
+  font-size: 14px;
+  line-height: 19px;
+  text-align: center;
+}
+
+.box--on {
+  border-color: #3182f6;
+  background: #3182f6;
+}
+
+/* 이름은 잘리지 않고 줄바꿈된다 — 어떤 품목인지가 금액보다 중요하다 */
+.pick-name {
+  font-size: 15px;
+  line-height: 1.4;
+  color: #191f28;
+}
+
+.pick-right {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-left: 32px; /* 체크박스 폭만큼 들여써 이름과 세로선을 맞춘다 */
+}
+
+.pick:not(.pick--on) .pick-right {
+  justify-content: flex-end;
+}
+
+.pick-price {
+  font-size: 15px;
+  font-weight: 700;
+  color: #3182f6;
+  white-space: nowrap;
+}
+
+.pick:not(.pick--on) .pick-price {
+  color: #b0b8c1;
+  font-weight: 500;
+}
+
+.budget-total {
+  margin: 24px 20px 0;
+  padding: 20px;
+  border-radius: 16px;
+  background: #f0f6ff;
+}
+
+.budget-total-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.budget-total-row span {
+  font-size: 15px;
+  font-weight: 600;
+  color: #4e5968;
+}
+
+.budget-total-row strong {
+  font-size: 28px;
+  font-weight: 800;
+  color: #3182f6;
+}
+
+.budget-per {
+  margin: 6px 0 0;
+  text-align: right;
+  font-size: 14px;
+  color: #6b7684;
+}
+
+.budget-source,
+.budget-msg {
+  margin: 10px 20px 0;
+  font-size: 13px;
+  color: #8b95a1;
+}
+
+.budget-msg {
+  color: #00a05a;
+  font-weight: 600;
+}
+
+.budget-cta {
+  display: flex;
+  gap: 10px;
+  padding: 24px 20px 0;
+}
+
+.btn {
+  flex: 1;
+  padding: 16px;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn--ghost {
+  border: 1px solid #d1d6db;
+  background: #fff;
+  color: #4e5968;
+}
+
+.btn--fill {
+  border: 0;
+  background: #3182f6;
+  color: #fff;
+}
+
+/* ── 착한가격업소 ───────────────────────── */
+
+.shops {
+  /* 상세 화면의 마지막 섹션이라 하단 CTA와 겹치지 않게 여유를 준다 */
+  margin: 16px 20px 40px;
+  scroll-margin-bottom: 120px;
+}
+
+.shops-title {
+  margin: 0 0 4px;
+  font-size: 17px;
+  font-weight: 700;
+  color: #191f28;
+}
+
+.shops-sub {
+  margin: 0 0 12px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #8b95a1;
+}
+
+.shop-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.shop {
+  padding: 14px;
+  margin-bottom: 8px;
+  border-radius: 12px;
+  background: #f4fbf6;
+}
+
+.shop-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.shop-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #191f28;
+}
+
+.shop-menus {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+}
+
+.shop-menu {
+  font-size: 13px;
+  color: #6b7684;
+}
+
+.shop-menu strong {
+  color: #00a05a;
+  font-weight: 700;
+}
+
+.shops-count {
+  font-size: 14px;
+  font-weight: 600;
+  color: #00a05a;
+}
+
+.shops-more {
+  width: 100%;
+  margin-top: 4px;
+  padding: 13px;
+  border: 1px solid #d3f0de;
+  border-radius: 12px;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  color: #00a05a;
+  cursor: pointer;
+}
+
+.shops-source {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: #b0b8c1;
+}
+
+/* ── 현장 가격 확인 ─────────────────────── */
+
+.check-card {
+  margin: 16px 20px;
+  padding: 20px;
+  border-radius: 16px;
+  background: #fff8f0;
+  border: 1px solid #ffe4c4;
+}
+
+.check-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.check-select {
+  flex: 1;
+  min-width: 0;
+  padding: 13px 10px;
+  border: 1px solid #e5e8eb;
+  border-radius: 12px;
+  font-size: 15px;
+  background: #fff;
+  color: #191f28;
+}
+
+.check-input {
+  width: 120px;
+  flex: 0 0 120px;
+  padding: 13px 12px;
+  border: 1px solid #e5e8eb;
+  border-radius: 12px;
+  font-size: 15px;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.check-official {
+  margin: 10px 0 0;
+  font-size: 13px;
+  color: #6b7684;
+}
+
+.check-result {
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.check-result p {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #4e5968;
+}
+
+.check-result--higher .check-headline {
+  color: #f04452;
+  font-size: 16px;
+}
+
+.check-result--cheaper p {
+  color: #00a05a;
+}
+
+.check-guide {
+  margin-top: 8px !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  line-height: 1.6;
+  color: #6b7684 !important;
+}
+
+.check-call {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #f2f4f6;
+  font-size: 14px;
+  font-weight: 700;
+  color: #3182f6;
+  text-decoration: none;
+}
+
+.spent-input {
+  width: 100%;
+  margin-top: 12px;
+  padding: 14px;
+  border: 1px solid #e5e8eb;
+  border-radius: 12px;
+  font-size: 16px;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.compare {
+  margin: 12px 0 0;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.compare--good {
+  color: #00a05a;
+}
+
+.compare--over {
+  color: #f04452;
+}
+
+.cta-space {
+  height: 24px;
+}
